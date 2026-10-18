@@ -60,3 +60,14 @@ Voice Test: Speak your wake command or test the voice biometric gateway to ensur
 This process is needed to install Trust-Shell onto the phone, which is required to take advantage of AnnonOS for the visually impaired or the Trust Forensics Mobile Lab for First Responders.
 
 Note: If you are reading this README file, you already know all of this, and I don't mean to insult you.
+
+## Building
+
+Both builds run `./build.sh` from the repo root, which needs a Buildroot source tree in `buildroot/`. The config is chosen with `ANNONOS_DEFCONFIG` (default `annonos_iso_defconfig`).
+
+- Phone (ARM) build: `ANNONOS_DEFCONFIG=annonos_phone_defconfig ./build.sh`
+- x86_64 live ISO build: `./build.sh`
+
+Artifacts are written to `buildroot/output/images/` (the ISO is `rootfs.iso9660`, alongside `bzImage` and `rootfs.cpio.gz`).
+
+To get the ISO from GitHub Actions: open the **Build AnnonOS ISO** workflow (Actions tab), run it via *Run workflow* or push to `main`, then download the `annonos-images` artifact from the finished run.

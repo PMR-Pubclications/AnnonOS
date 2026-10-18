@@ -1,0 +1,36 @@
+name: Build AnnonOS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential bc rsync cpio file wget unzip python3 git \
+            libncurses-dev bison flex libssl-dev xorriso \
+            grub-pc-bin grub-efi-amd64-bin mtools
+
+      - name: Fetch Buildroot sources
+        run: |
+          git clone --depth 1 --branch 2024.02.9 https://gitlab.com/buildroot.org/buildroot.git /tmp/buildroot
+          rsync -a --exclude .git /tmp/buildroot/ buildroot/
+
+      - name: Build ISO
+        env:
+          ANNONOS_DEFCONFIG: annonos_iso_defconfig
+        run: ./build.sh
+
+      - name: Upload images
+        uses: actions/upload-artifact@v4
+        with:
+          name: annonos-images
+          path: buildroot/output/images/*
