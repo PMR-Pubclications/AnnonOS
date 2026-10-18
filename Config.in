@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_ANNONOS_PATH/packages/annonos-core/Config.in"
