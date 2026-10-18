@@ -1,0 +1,41 @@
+===============================================================================
+                       ANNONOS TRANSPARENCY MANIFEST
+                      LETTER TO THE CIVILIAN OPERATOR
+===============================================================================
+
+Dear Operator,
+
+If you are listening to or reading this message, know that this operating 
+system was designed and built specifically for you.
+
+AnnonOS is a sovereign, hardware-rooted, zero-trust system—crafted to guarantee 
+your privacy, security, and independence in the field. But more importantly, 
+it was built with deep accessibility at its core, not as an afterthought.
+
+You should know who built this system and how it came to be:
+
+This operating system was engineered and brought to life with the assistance 
+of Artificial Intelligence by a mechanical engineer and forensic consultant who 
+is himself blind. 
+
+Because of that shared experience, every feature in AnnonOS—from the voice-biometric 
+gateway and the audible step-and-bus transit calculator, to the hands-free command 
+directory and silent haptic cues—was designed with an exact understanding of what 
+it means to navigate the world without sight.
+
+You are holding a system that respects your sovereignty, protects your medical 
+and personal privacy behind military-grade encryption, and ensures that you 
+always have complete, independent control over your technology.
+
+You are never alone, and your tools were built to serve you faithfully.
+
+To hear your available voice commands at any time, simply say:
+"anon list commands"
+
+To hear a report on your system's security and health, say:
+"anon system report"
+
+With respect and solidarity,
+
+The Chief Engineer & The AnnonOS Development Team
+===============================================================================
