@@ -1,0 +1,8 @@
+config BR2_PACKAGE_ANNONOS_CORE
+	bool "annonos-core"
+	depends on BR2_USE_WCHAR
+	select BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_PYTHON_SQLITE
+	help
+	  AnnonOS sovereign, hardware-rooted, zero-trust core modules,
+	  polymorphic security engine, voice auth, mesh sync, and transparency manifests.
