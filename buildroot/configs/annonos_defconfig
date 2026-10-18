@@ -1,0 +1,25 @@
+# AnnonOS Hardened Embedded Linux Target Configuration (Buildroot)
+BR2_armeb=y
+BR2_cortex_a9=y
+BR2_ARM_ENABLE_NEON=y
+
+# System Configuration
+BR2_TARGET_GENERIC_HOSTNAME="AnnonOS-Tactical"
+BR2_TARGET_GENERIC_ISSUE="AnnonOS Sovereign Field Unit - Authorized Personnel Only"
+BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV=y
+
+# Kernel & Filesystem Hardening
+BR2_TARGET_ROOTFS_SQUASHFS=y
+BR2_TARGET_ROOTFS_SQUASHFS_XZ=y
+BR2_PACKAGE_BUSYBOX_SHOW_OTHERS=y
+
+# Python 3 Runtime for Core Daemons
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_PYTHON3_CRYPTOGRAPHY=y
+
+# Security & Cryptography Tools
+BR2_PACKAGE_OPENSSL=y
+BR2_PACKAGE_IPTABLES=y
+
+# Read-Only Rootfs Ephemeral Overlay Setup
+# Mounts /tmp and /var/log as volatile tmpfs ram-disks to prevent forensic persistence on power down.
