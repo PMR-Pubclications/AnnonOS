@@ -65,3 +65,5 @@ Visual Display: You will see your role-differentiated boot animation render dire
 
 Audio Check: Immediately following verification, the system will output the accessibility startup greeting through the speaker, reminding the operator of the help command (anon list commands).
 Voice Test: Speak your wake command or test the voice biometric gateway to ensure hands-free control is fully operational.
+
+This process is needed to install the Trust-Shell onto the phone. Which is needed to take advantage of the AnnonOS for the visually impaired or the Trust Forensics Mobile Lab for First Responders.
