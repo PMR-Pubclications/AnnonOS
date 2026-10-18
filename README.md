@@ -59,5 +59,4 @@ Audio Check: Immediately following verification, the system will output the acce
 Voice Test: Speak your wake command or test the voice biometric gateway to ensure hands-free control is fully operational.
 This process is needed to install Trust-Shell onto the phone, which is required to take advantage of AnnonOS for the visually impaired or the Trust Forensics Mobile Lab for First Responders.
 
-Note: If you know to read the ReadMe file, you already know all of this and I do mean to insult you 
-
+Note: If you are reading this README file, you already know all of this, and I don't mean to insult you.
