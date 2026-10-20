@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 AnnonOS: Voice-Controlled On-Screen Virtual Keyboard Subsystem
-Supports multi-language layouts (English, Russian, etc.) and voice command parsing.
+Includes dynamic visual prompts and status cues for hands-free operations.
 """
 
 class AnnonVirtualKeyboard:
@@ -46,10 +46,18 @@ class AnnonVirtualKeyboard:
         
         return keys
 
+    def get_visual_prompt(self) -> str:
+        """Returns the real-time visual UI prompt to guide the operator on voice commands."""
+        if not self.is_visible:
+            return "[MIC ACTIVE] Say: 'Open Keyboard'"
+        else:
+            return f"[KEYBOARD: {self.current_language.upper()}] Say: 'Close Keyboard' or 'Change Format [Russian/English]'"
+
     def toggle_keyboard(self, visible: bool):
         """Shows or hides the on-screen keyboard."""
         self.is_visible = visible
-        print(f"[AnnonOS] Virtual Keyboard Visible: {self.is_visible} ({self.current_language.upper()})")
+        print(f"\n--- UI STATE UPDATE ---")
+        print(f"Visual Prompt: {self.get_visual_prompt()}")
 
     def change_layout(self, language: str):
         """Switches keyboard layout format (e.g., english, russian)."""
@@ -57,13 +65,14 @@ class AnnonVirtualKeyboard:
         if lang in ["english", "russian"]:
             self.current_language = lang
             self.layout = self._build_layout(self.current_language)
-            print(f"[AnnonOS] Keyboard format changed to: {self.current_language.upper()}")
+            print(f"[AnnonOS] Format changed. {self.get_visual_prompt()}")
         else:
             print(f"[AnnonOS] Error: Unsupported layout format '{language}'")
 
     def process_voice_command(self, voice_transcript: str):
         """Parses speech transcripts from the AI pipeline to control keyboard states."""
         transcript = voice_transcript.lower().strip()
+        print(f"\n[VOICE INPUT HEARD]: \"{voice_transcript}\"")
         
         if "open keyboard" in transcript:
             self.toggle_keyboard(True)
@@ -75,9 +84,9 @@ class AnnonVirtualKeyboard:
             elif "english" in transcript:
                 self.change_layout("english")
             else:
-                print("[AnnonOS] Voice command received, but target language format was unclear.")
+                print("[AnnonOS] Command unclear. Specify language (e.g., 'Russian').")
         else:
-            print(f"[AnnonOS] Unrecognized voice command: '{voice_transcript}'")
+            print(f"[AnnonOS] Unrecognized command.")
 
     def handle_touch_event(self, touch_x: int, touch_y: int) -> str:
         """Processes touch screen coordinates and updates input buffer."""
@@ -94,21 +103,20 @@ class AnnonVirtualKeyboard:
                 else:
                     self.active_buffer += key["char"]
                 
-                print(f"[OSK] Current Input: {self.active_buffer}")
+                print(f"[OSK Input Buffer]: {self.active_buffer}")
                 break
                 
         return self.active_buffer
 
-    def get_input_buffer(self) -> str:
-        return self.active_buffer
 
-
-# Example Execution & Voice Command Simulation
+# Example Execution & Simulation
 if __name__ == "__main__":
     osk = AnnonVirtualKeyboard()
 
-    print("--- Simulating Voice Control Pipeline ---")
+    # Initial state screen cue
+    print(f"Screen Display: {osk.get_visual_prompt()}")
+
+    # Simulate operator voice commands
     osk.process_voice_command("Open keyboard")
     osk.process_voice_command("Change keyboard format Russian")
-    osk.process_voice_command("Switch keyboard to English")
     osk.process_voice_command("Close keyboard")
