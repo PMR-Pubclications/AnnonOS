@@ -1,6 +1,28 @@
-# config.yaml (inside Trust-Main, Trust-Shell, etc.)
+# ==========================================
+# ANNON-OS CONFIGURATION FILE
+# ==========================================
+
+project:
+  name: "AnnonOS"
+  version: "1.0.0"
+  role: "System-level Mobile Environment"
+
+# Security & Handshake Settings (Links with Diagnostic Core)
 security:
   handshake_protocol: "HMAC-SHA256"
   target_diagnostic_repo: "my_diagnostic_project"
   shared_secret_env_var: "REPO_SHARED_SECRET"
   token_expiration_seconds: 300
+
+# OS & Buildroot Pipeline Settings
+system:
+  build_target: "mobile_edge"
+  merkle_audit_chains_enabled: true
+  accessibility_voice_commands: true
+  expected_endpoint: "local_pipe_or_socket_4"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+  save_to_file: true
