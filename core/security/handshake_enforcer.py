@@ -13,3 +13,6 @@ expected = self._expected_token(app_name, publisher_id, binary_path)
 if expected is None:
     logger.critical("REPO_SHARED_SECRET is not set; refusing all handshakes.")
 if expected is not None and hmac.compare_digest(handshake_token, expected):
+if not self._secret_seed:
+    logger.error("REPO_SHARED_SECRET is not set; cannot perform handshake.")
+    return False
