@@ -9,3 +9,7 @@ def _expected_token(self, app_name: str, publisher_id: str, binary_path: str) ->
         return None
     message = f"{app_name}:{publisher_id}:{binary_path}".encode("utf-8")
     return hmac.new(secret, message, hashlib.sha256).hexdigest()
+expected = self._expected_token(app_name, publisher_id, binary_path)
+if expected is None:
+    logger.critical("REPO_SHARED_SECRET is not set; refusing all handshakes.")
+if expected is not None and hmac.compare_digest(handshake_token, expected):
