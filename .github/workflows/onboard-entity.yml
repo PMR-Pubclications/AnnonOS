@@ -1,0 +1,27 @@
+name: Onboard New Entity
+on:
+  push:
+    paths:
+      - 'entities/*.json' # Triggered when a new entity profile is added
+
+jobs:
+  dispatch-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Trigger Trust-Main Provisioning
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: PMR-Pubclications/Trust-Main
+          event_type: onboard_entity
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+      - name: Trigger Trust-Shell Sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: PMR-Pubclications/Trust-Shell
+          event_type: sync_security_profile
